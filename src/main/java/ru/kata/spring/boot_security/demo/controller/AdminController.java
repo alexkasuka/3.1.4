@@ -1,6 +1,7 @@
 package ru.kata.spring.boot_security.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,13 +24,17 @@ public class AdminController {
 
     @GetMapping()
     public String adminHomePage(Model model) {
+        model.addAttribute("currentUser", userService.getCurrentUser());
         model.addAttribute("allUsers", userService.findAll());
-        return "home";
+        model.addAttribute("roles", roleService.findAll());
+        model.addAttribute("user", new User());
+        return "admin";
     }
 
     @PostMapping("/new")
     public String newUser(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute(userService.getCurrentUser());
+        model.addAttribute("newUser", new User());
         model.addAttribute("roles", roleService.findAll());
         return "new";
     }

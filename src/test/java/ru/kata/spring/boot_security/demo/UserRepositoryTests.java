@@ -8,6 +8,8 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.annotation.Rollback;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
@@ -31,11 +33,12 @@ public class UserRepositoryTests {
     @Test
     public void testCreateUser() {
         User user = new User();
-        user.setEmail("ravikumar@gmail.com");
-        user.setPassword("ravi2020");
+        user.setEmail("alex@mail.ru");
+        user.setPassword(passwordEncoder().encode("alex"));
         user.setFullname("Ravi");
         user.setAge(25);
-        user.setUsername("ravi");
+        user.setUsername("Alex");
+        user.addRole(roleRepo.findByName("User"));
 
         User savedUser = userRepo.save(user);
 
@@ -45,15 +48,21 @@ public class UserRepositoryTests {
 
     }
 
+
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+
     @Test
     public void testAddRoleToNewUser() {
         Role roleAdmin = roleRepo.findByName("Admin");
 
         User user = new User();
-        user.setEmail("mikes.gates@gmail.com");
-        user.setPassword("mike2020");
-        user.setUsername("mike");
-        user.setFullname("Gates");
+        user.setEmail("ivan@mail.ru");
+        user.setPassword(passwordEncoder().encode("ivan"));
+        user.setUsername("Ivan");
+        user.setFullname("Ravi");
         user.setAge(12);
         user.addRole(roleAdmin);
 
