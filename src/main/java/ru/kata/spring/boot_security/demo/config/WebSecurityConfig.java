@@ -32,9 +32,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable()
                 .authorizeRequests()
-                .mvcMatchers("/").permitAll()
-                .mvcMatchers("/admin").hasAuthority("ADMIN")
-                .mvcMatchers("/user").hasAnyAuthority("USER", "ADMIN")
+                .mvcMatchers("/admin/**").hasAuthority("ADMIN")
+                .mvcMatchers("/user/**").hasAnyAuthority("USER", "ADMIN")
+                .mvcMatchers("/", "/index", "/api/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login")
