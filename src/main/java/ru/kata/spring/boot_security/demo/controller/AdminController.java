@@ -31,13 +31,13 @@ public class AdminController {
         return "admin";
     }
 
-    @PostMapping("/new")
-    public String newUser(Model model) {
-        model.addAttribute(userService.getCurrentUser());
-        model.addAttribute("newUser", new User());
-        model.addAttribute("roles", roleService.findAll());
-        return "new";
-    }
+//    @PostMapping("/new")
+//    public String newUser(Model model) {
+//        model.addAttribute(userService.getCurrentUser());
+//        model.addAttribute("newUser", new User());
+//        model.addAttribute("roles", roleService.findAll());
+//        return "new";
+//    }
 
     @PostMapping
     public String create(@ModelAttribute("user") User user) {
@@ -45,12 +45,12 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/edit/{id}")
-    public String edit(Model model, @PathVariable("id") int id) {
-        model.addAttribute("user", userService.getUserById(id));
-        model.addAttribute("roles", roleService.findAll());
-        return "edit";
-    }
+//    @GetMapping("/edit/{id}")
+//    public String edit(Model model, @PathVariable("id") int id) {
+//        model.addAttribute("user", userService.getUserById(id));
+//        model.addAttribute("roles", roleService.findAll());
+//        return "edit";
+//    }
 
     @PatchMapping("{id}")
     public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
@@ -62,6 +62,7 @@ public class AdminController {
     public String delete(@PathVariable("id") int id) {
         userService.deleteUser(id);
         return "redirect:/admin";
+
     }
 
 }
