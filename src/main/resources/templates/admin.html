@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:th="https://www.thymeleaf.org"
 >
-<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,8 +8,7 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>Spring Security Example</title>
-    <!--script type="text/javascript" th:src="@{js/api.js}" src="../static/js/api.js"></script-->
-    <script type="text/javascript" src="http://localhost:8080/js/api.js"></script>
+    <script type="text/javascript" th:src="@{/js/api.js}"></script>
 </head>
 <body>
 
@@ -102,34 +100,34 @@
                         <div class="bg-white d-flex justify-content-center text-center font-weight-bold">
                             <form id="newUserForm">
                                 <div class="form-group">
-                                    <label>Firstame</label>
+                                    <label for="newUsername">Firstame</label>
                                     <input type="text" name="username" id="newUsername" 
                                            class="form-control" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Lastname</label>
+                                    <label for="newFullname">Lastname</label>
                                     <input type="text" name="fullname"  id="newFullname"
                                            class="form-control" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Age</label>
+                                    <label for="newAge">Age</label>
                                     <input type="text" name="age"  id="newAge"
                                            class="form-control" min="0" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Email</label>
+                                    <label for="newEmail">Email</label>
                                     <input type="text" name="email" placeholder="mail@mail.ru" id="newEmail"
                                            class="form-control" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Password</label>
+                                    <label for="newPassword">Password</label>
                                     <input type="password" name="password"  id="newPassword"
                                            class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="newRoles">Role</label>
                                                 <select multiple class="form-control" required size="2"
-                                                        id="newRoles" name="roles" value="roles">
+                                                        id="newRoles" name="roles">
                                                 </select>
                                 </div>
                                 <button type="submit" href="#nav-home" data-toggle="tab"
@@ -194,7 +192,7 @@
                                                         <div class="form-group">
                                                             <label for="editRoles">Role</label>
                                                             <select multiple class="form-control" size="2"
-                                                                    id="editRoles" name="roles" value="roles">
+                                                                    id="editRoles" name="roles">
                                                             </select>
                                                         </div>
                                                         <div class="modal-footer">
@@ -269,7 +267,7 @@
                                     <div class="form-group">
                                         <label for="deleteRoles">Role</label>
                                         <select multiple class="form-control" size="2"
-                                                id="deleteRoles" name="roles" value="roles" disabled>
+                                                id="deleteRoles" name="roles" disabled>
                                         </select>
                                     </div>
                                     <div class="modal-footer">
@@ -280,7 +278,7 @@
                                         <button type="submit" class="btn btn-danger"
                                                 onclick="deleteUser()">Delete
                                         </button>
-                                        </button>
+
                                     </div>
                                 </div>
                             </div>
