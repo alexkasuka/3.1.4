@@ -40,9 +40,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getCurrentUser() {
-        // TODO change back to getPrincipal
         return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        //return getUserById(20);
     }
 
     @Override
