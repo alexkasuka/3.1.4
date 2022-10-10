@@ -1,16 +1,16 @@
 package ru.kata.spring.boot_security.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping()
 public class AdminController {
     private final UserService userService;
     private final RoleService roleService;
@@ -22,7 +22,7 @@ public class AdminController {
     }
 
 
-    @GetMapping()
+    @GetMapping("/admin")
     public String adminHomePage(Model model) {
         model.addAttribute("currentUser", userService.getCurrentUser());
         model.addAttribute("allUsers", userService.findAll());
@@ -30,6 +30,8 @@ public class AdminController {
         model.addAttribute("user", new User());
         return "admin";
     }
+
+
 
 //    @PostMapping("/new")
 //    public String newUser(Model model) {
@@ -39,11 +41,11 @@ public class AdminController {
 //        return "new";
 //    }
 
-    @PostMapping
-    public String create(@ModelAttribute("user") User user) {
-        userService.addUser(user);
-        return "redirect:/admin";
-    }
+//    @PostMapping
+//    public String create(@ModelAttribute("user") User user) {
+//        userService.addUser(user);
+//        return "redirect:/admin";
+//    }
 
 //    @GetMapping("/edit/{id}")
 //    public String edit(Model model, @PathVariable("id") int id) {
@@ -52,17 +54,17 @@ public class AdminController {
 //        return "edit";
 //    }
 
-    @PatchMapping("{id}")
-    public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
-        userService.updateUser(user);
-        return "redirect:/admin";
-    }
+//    @PatchMapping("{id}")
+//    public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
+//        userService.updateUser(user);
+//        return "redirect:/admin";
+//    }
 
-    @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable("id") int id) {
-        userService.deleteUser(id);
-        return "redirect:/admin";
-
-    }
+//    @DeleteMapping("/delete/{id}")
+//    public String delete(@PathVariable("id") int id) {
+//        userService.deleteUser(id);
+//        return "redirect:/admin";
+//
+//    }
 
 }

@@ -45,8 +45,8 @@ public class AdminRestController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable("id") int id) {
-        return ResponseEntity.ok(userService.getUserById(id));
+    public ResponseEntity<UserDTO> getUserById(@PathVariable("id") int id) {
+        return ResponseEntity.ok(userMapper.toUserDTO(userService.getUserById(id)));
     }
 
     @GetMapping("/getRoles")
@@ -55,9 +55,9 @@ public class AdminRestController {
     }
 
     @PostMapping()
-    public ResponseEntity<HttpStatus> create(@RequestBody UserDTO userDTO) {
-        userService.addUser(userMapper.toUser(userDTO));
-        return ResponseEntity.ok(HttpStatus.OK);
+    public ResponseEntity<User> create(@RequestBody User user) {
+        userService.addUser(user);
+        return ResponseEntity.ok(user);
     }
 
     @PutMapping()

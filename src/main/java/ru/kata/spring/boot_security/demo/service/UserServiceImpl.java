@@ -33,14 +33,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addUser(User user) {
-
+        System.out.println(user);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
     @Override
     public User getCurrentUser() {
+        // TODO change back to getPrincipal
         return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        //return getUserById(20);
     }
 
     @Override
